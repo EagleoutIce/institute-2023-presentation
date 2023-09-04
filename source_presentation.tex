@@ -1,0 +1,48 @@
+\input{data/preamble}
+
+\title{Walter}
+
+\makeatletter
+% \def\btdm@inserttotalframenumber{23}%
+\begin{document}
+\begin{frame}[plain]
+%
+\definecolor{uulmaccent}{HTML}{A9A28D}
+\definecolor{red}{HTML}{A32638}
+\begin{tikzpicture}[overlay,remember picture]
+
+\fill[uulmaccent] (current page.south west)
+   rectangle ([xshift=-2cm,yshift=5mm]current page.south east) node[midway,centered] {[Titel einfügen]};
+
+\fill[red] (current page.south east) rectangle ++(-1.85cm,5mm) coordinate (@);
+
+\node[below right,white] at(@) {\kern-6pt\small13};
+
+\end{tikzpicture}
+
+
+   powerpoint gag offset page number
+   weird image in the middle, fake animation
+
+\end{frame}
+
+% \setcounter{btdm@sectioncount}{7}% lock scrolling
+% \def\inserttotalframenumber{16}% TODO: hard lock
+\titlepage
+% \gdef\btdm@inserttotalframenumber{16}%
+\begin{frame}
+
+
+makros
+packages
+layouts: port from one venue to another
+tikz absolute placement and nodes
+forests
+boxes
+catcodes
+how does latex expansion work
+
+\end{frame}
+
+
+\end{document}
