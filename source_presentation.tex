@@ -16,7 +16,7 @@
 
 \fill[red] (current page.south east) rectangle ++(-1.85cm,5mm) coordinate (@);
 
-\node[below right,white] at(@) {\kern-6pt\small13};
+\node[below right,white] at(@) {\kern-6pt\footnotesize13\;/\;page};
 
 \end{tikzpicture}
 
@@ -26,23 +26,52 @@
 
 \end{frame}
 
-% \setcounter{btdm@sectioncount}{7}% lock scrolling
+% \setcounter{btdm@sectioncount}{6}% lock scrolling
 % \def\inserttotalframenumber{16}% TODO: hard lock
 \titlepage
 % \gdef\btdm@inserttotalframenumber{16}%
 \begin{frame}
+\end{frame}
 
+\begin{frame}
+   TODO: KIT typesetting figure
+\end{frame}
 
-makros
-packages
-layouts: port from one venue to another
-tikz absolute placement and nodes
-forests
-boxes
-catcodes
-how does latex expansion work
+\section{Macros}
+\begin{frame}{\insertsection}
 
 \end{frame}
+
+\section[Packages]{Important Packages}
+\begin{frame}{\insertsection}
+
+\end{frame}
+
+\section{TikZ}
+
+\begin{frame}{\insertsection}
+   tikz absolute placement and nodes
+\end{frame}
+
+\section{Forests}
+\begin{frame}{\insertsection}
+   forests
+\end{frame}
+
+\section{Boxes}
+\begin{frame}{\insertsection}
+   boxes
+\end{frame}
+
+\section{Catcodes}
+\begin{frame}{\insertsection}
+   catcodes
+   how does latex expansion work
+\end{frame}
+
+% \section{}
+% layouts: port from one venue to another
+
 
 
 \end{document}
