@@ -3,14 +3,14 @@
 \title{Walter}
 
 \let\oldtitlepage\DoTitlepage
-\let\DoTitlepage\relax
+\def\DoTitlepage{}
 
 \input{data/title}
 
 \makeatletter
 % \def\btdm@inserttotalframenumber{23}%
 \begin{document}
-% \begin{frame}[plain]
+% \begin{frame}
 % %
 % \definecolor{uulmaccent}{HTML}{A9A28D}
 % \definecolor{red}{HTML}{A32638}
@@ -31,20 +31,47 @@
 
 % \end{frame}
 
-% \setcounter{btdm@sectioncount}{6}% lock scrolling
-% \def\inserttotalframenumber{16}% TODO: hard lock
-\titlepage
-% \gdef\btdm@inserttotalframenumber{16}%
 \begin{frame}
 \end{frame}
 
-\begin{frame}
-   \TitleImageLoad\relax
+% \begin{frame}
+% \begin{layout-full}
+%    \resizebox\linewidth!{\TitleImageLoad\relax}%
+% \end{layout-full}
+% \end{frame}
+
+\Sec{Doing funny stuff with}{Macro Definitions}
+\def\n{\\[2em]}
+\begin{frame}{~}
+\begin{focus}
+   % fragen ob die befehle allen so grob bekannt sind
+\begin{minipage}{.65\linewidth}
+\begin{columns}[onlytextwidth,c]
+\column{.4\linewidth}
+   \blatex{\\newcommand}\n
+   \blatex{\\renewcommand}\n
+   \blatex{\\providecommand}
+\column{.1\linewidth}
+\column{.25\linewidth}
+   \blatex{\\def}\n
+   \blatex{\\gdef}\n
+   \blatex{\\edef}\n
+   \blatex{\\xdef}
+\end{columns}\end{minipage}%
+\end{focus}
+% stern danach ja nein einfach erklären
 \end{frame}
 
-\section{Macros}
-\begin{frame}{\insertsection}
+\begin{frame}
+   Example replacement with arguments
+\end{frame}
 
+\begin{frame}
+   conditionals (etoolbox etc. stuff)
+\end{frame}
+
+\begin{frame}
+   more stuff (like namespacing with @, expandafter, edef, ...)
 \end{frame}
 
 \section[Packages]{Important Packages}
@@ -68,15 +95,13 @@
    boxes
 \end{frame}
 
-\section{Catcodes}
-\begin{frame}{\insertsection}
-   catcodes
-   how does latex expansion work
-\end{frame}
+% \section{Catcodes}
+% \begin{frame}{\insertsection}
+%    catcodes
+%    how does latex expansion work
+% \end{frame}
 
 % \section{}
 % layouts: port from one venue to another
-
-
 
 \end{document}

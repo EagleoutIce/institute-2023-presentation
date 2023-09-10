@@ -1,6 +1,17 @@
 \errorcontextlines99999
 \documentclass[aspectratio=169,usepdftitle=true]{beamer}
 
+\usepackage{xcolor-material}
+
+\colorlet{black}{MaterialBlack}
+\colorlet{gray}{MaterialGrey}
+\colorlet{red}{MaterialRed}
+\colorlet{purple}{MaterialPurple}
+\colorlet{blue}{MaterialBlue}
+\colorlet{cyan}{MaterialCyan}
+\colorlet{green}{MaterialGreen}
+\colorlet{orange}{MaterialOrange}
+
 \usepackage[T1]{fontenc}
 \usepackage[utf8]{inputenc}
 \usepackage[english]{babel}
@@ -16,8 +27,7 @@
 \usepackage{fancyqr}
 \usepackage[fontsize=14]{beamer-latex-pdfpc-notes}
 \usepackage[cpalette,encoding,defaultfont,fakeminted]{sopra-listings}
-
-\solLoadLanguage{R}
+\solLoadLanguage{fancytex,R}
 \solsetmintedstyle{plain number}
 
 \usepackage{beamerthemedividing-lines}
@@ -73,4 +83,34 @@
 \errorcontextlines9999
 \lstset{add to literate=
    {<-}{{{\!\(\leftarrow\)\!}}}2
+}
+
+
+\def\CurrentSecText{Doing funny stuff with}
+\def\Sec#1#2{\def\CurrentSecText{#1}\section{#2}}
+\AtBeginSection{{%
+% \setbeamercolor{background canvas}{bg=gray}
+\begin{frame}
+   \begin{tikzpicture}[@O]
+      \node[font=\huge\bfseries,above right=7.5mm] (@) at (current page.south west) {\insertsection};
+      \node[above right,yshift=-2mm, gray,font=\scriptsize\sbfamily] at(@.north west) {\CurrentSecText};
+   \end{tikzpicture}
+\end{frame}
+}}
+
+\setbeamertemplate{footline}{%
+\begin{tikzpicture}[@O]
+   \node[below left=1mm,font=\tiny\sbfamily,yshift=-2pt,xshift=-.33pt] at(current page.north east) {\thepage};
+\end{tikzpicture}%
+}
+
+\usepackage{DejaVuSansMono}
+\makeatletter
+\solSetStyle{basic}{\sol@ttfamily\sbfamily}%
+
+
+\NewEnviron{focus}{%
+   \begin{layout-full}\begin{tikzpicture}[@O]
+      \node[text width=\linewidth,align=center] at(current page.center) {\BODY};
+   \end{tikzpicture}\end{layout-full}%
 }
