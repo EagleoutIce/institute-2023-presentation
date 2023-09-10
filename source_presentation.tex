@@ -2,29 +2,34 @@
 
 \title{Walter}
 
+\let\oldtitlepage\DoTitlepage
+\let\DoTitlepage\relax
+
+\input{data/title}
+
 \makeatletter
 % \def\btdm@inserttotalframenumber{23}%
 \begin{document}
-\begin{frame}[plain]
-%
-\definecolor{uulmaccent}{HTML}{A9A28D}
-\definecolor{red}{HTML}{A32638}
-\begin{tikzpicture}[overlay,remember picture]
+% \begin{frame}[plain]
+% %
+% \definecolor{uulmaccent}{HTML}{A9A28D}
+% \definecolor{red}{HTML}{A32638}
+% \begin{tikzpicture}[overlay,remember picture]
 
-\fill[uulmaccent] (current page.south west)
-   rectangle ([xshift=-2cm,yshift=5mm]current page.south east) node[midway,centered] {[Titel einfügen]};
+% \fill[uulmaccent] (current page.south west)
+%    rectangle ([xshift=-2cm,yshift=5mm]current page.south east) node[midway,centered] {[Titel einfügen]};
 
-\fill[red] (current page.south east) rectangle ++(-1.85cm,5mm) coordinate (@);
+% \fill[red] (current page.south east) rectangle ++(-1.85cm,5mm) coordinate (@);
 
-\node[below right,white] at(@) {\kern-6pt\footnotesize13\;/\;page};
+% \node[below right,white] at(@) {\kern-6pt\footnotesize13\;/\;page};
 
-\end{tikzpicture}
+% \end{tikzpicture}
 
 
-   powerpoint gag offset page number
-   weird image in the middle, fake animation
+%    % powerpoint gag offset page number
+%    % weird image in the middle, fake animation
 
-\end{frame}
+% \end{frame}
 
 % \setcounter{btdm@sectioncount}{6}% lock scrolling
 % \def\inserttotalframenumber{16}% TODO: hard lock
@@ -34,7 +39,7 @@
 \end{frame}
 
 \begin{frame}
-   TODO: KIT typesetting figure
+   \TitleImageLoad\relax
 \end{frame}
 
 \section{Macros}
