@@ -1,6 +1,6 @@
 \input{data/preamble}
 
-\title{Walter}
+\title{Love of doing}
 
 \let\oldtitlepage\DoTitlepage
 \def\DoTitlepage{}
@@ -43,16 +43,17 @@
 \Sec{Doing funny stuff with}{Macro Definitions}
 \def\n{\\[2em]}
 \begin{frame}{~}
+\solSetStyle{keywordA}{}%
 \begin{focus}
    % fragen ob die befehle allen so grob bekannt sind
 \begin{minipage}{.65\linewidth}
 \begin{columns}[onlytextwidth,c]
-\column{.4\linewidth}
+\column<2->{.5\linewidth}
    \blatex{\\newcommand}\n
    \blatex{\\renewcommand}\n
    \blatex{\\providecommand}
 \column{.1\linewidth}
-\column{.25\linewidth}
+\column<3->{.25\linewidth}
    \blatex{\\def}\n
    \blatex{\\gdef}\n
    \blatex{\\edef}\n
@@ -63,7 +64,33 @@
 \end{frame}
 
 \begin{frame}
-   Example replacement with arguments
+   \begin{focus}
+      \onslide<2->{%
+         \B{ncmd}{\\newcommand}\B{cmdname}{\\todo}%
+         \B{arg}{[1]}%
+         \B{body-start}{\{\\textbf\{todo:\}~}\kern-3pt\B{arg-use}{\#1}\B{body-end}{\}}
+      }
+      \begin{onlyenv}<6->
+         \vspace*{7.5em}\par
+         \begin{tabular}{rcl}
+            \onslide<7->{\B{todo-call}{\\todo}\B{arg-main}{\{}\kern-5pt\B{arg-rest}{fun\}}} & \onslide<8->{~~\(\mapsto\)~~} & \onslide<8->{\B{2-body-start}{\\textbf\{todo:\}~}\kern-3pt\B{2-arg-use}{fun}}\\
+            & \fo{\onslide<9->{~~\(\mapsto\)~~}} & \fo{\onslide<9->{\B{3-body-start}{\\ifmmode\\nfss@text\{\\bfseries}\textcolor{gray}{\ldots}}}\\
+            & \onslide<10->{\(\vdots\)} & \\
+            &\onslide<11->{~~\(\mapsto\)~~} & \onslide<12->{\DoBox{\textbf{todo:}~fun}}
+            % TODO: move first todo in the same line
+         \end{tabular}
+      \end{onlyenv}
+   \end{focus}
+   \begin{tikzpicture}[@O,gray,line cap=round,font=\small,K/.style={decoration={brace,mirror},semithick,decorate},KO/.style={decoration={brace},semithick,decorate}]
+      \onslide<3->{\draw[K] ([yshift=-1mm]cmdname.south west) -- ([yshift=-1mm]cmdname.south east) node[midway,below=1mm] (cmdname-desc) {name};}
+      \onslide<4->{
+         \draw[Kite-] ([yshift=1mm]arg.north) to[bend left=25] ++(5mm,5mm) node[right] {number of arguments};
+      }
+      \onslide<5->{
+         \draw[K] ([yshift=-1mm]body-start.south west) -- ([yshift=-1mm]body-end.south east) node[midway,below=1mm] (cmdname-desc) {body};
+      }
+   \end{tikzpicture}
+   % Example replacement with arguments
 \end{frame}
 
 \begin{frame}

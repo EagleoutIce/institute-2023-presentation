@@ -65,6 +65,9 @@
     U/.style={line cap=round, line join=round}
 }
 
+% TODO \temporal argument
+\setbeamercovered{transparent=5}
+
 \def\PlaceFramenumberUpperLeft{}
 \def\TitlepageSlideAlign{c}
 \def\titlepage{%
@@ -92,7 +95,7 @@
 % \setbeamercolor{background canvas}{bg=gray}
 \begin{frame}
    \begin{tikzpicture}[@O]
-      \node[font=\huge\bfseries,above right=7.5mm] (@) at (current page.south west) {\insertsection};
+      \node[font=\huge\bfseries,above right=1cm] (@) at (current page.south west) {\insertsection};
       \node[above right,yshift=-2mm, gray,font=\scriptsize\sbfamily] at(@.north west) {\CurrentSecText};
    \end{tikzpicture}
 \end{frame}
@@ -100,17 +103,29 @@
 
 \setbeamertemplate{footline}{%
 \begin{tikzpicture}[@O]
-   \node[above left=1mm,font=\tiny\sbfamily,yshift=2pt,xshift=-.33pt] at(current page.south east) {\thepage};
+   \node[above left=1mm,font=\tiny\sbfamily,yshift=2pt,xshift=-.33pt] at(current page.south east) {\strut\thepage\strut};
 \end{tikzpicture}%
 }
 
-\usepackage{DejaVuSansMono}
+\usepackage{droidsansmono}
 \makeatletter
-\solSetStyle{basic}{\sol@ttfamily\sbfamily}%
+\solSetStyle{basic}{\sol@ttfamily}%
+\solSetStyle{keywordA}{\bfseries}% TODO: sbfamily?
+\solSetStyle{keywordB}{\color{darkgray}}
+\solSetStyle{numbers}{\color{darkgray}}
+% \soldisablenumhl
 
+\usetikzlibrary{tikzmark,shadows}
+\def\B#1#2{\tikzmarknode{#1}{\strut\blatex{#2}\strut}}
+\def\DoBox#1{\tikz[baseline=(@.base)]{\node[rounded corners=2pt,fill=white,drop shadow={shadow xshift=.2ex,shadow yshift=-.2ex,opacity=.2,fill=gray}](@){#1};}}
 
+\newsavebox\FocusBox
 \NewEnviron{focus}{%
+   \setbox\FocusBox=\hbox{\parbox\linewidth{\begin{center}\BODY\end{center}}}%
    \begin{layout-full}\begin{tikzpicture}[@O]
-      \node[text width=\linewidth,align=center] at(current page.center) {\BODY};
+      \node at(current page.center) {\usebox\FocusBox};
    \end{tikzpicture}\end{layout-full}%
 }
+\def\fo#1{\begin{colormixin}{30!white}#1\end{colormixin}}
+
+\usepackage{mathastext}
