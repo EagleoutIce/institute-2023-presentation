@@ -10,28 +10,48 @@
 \makeatletter
 % \def\btdm@inserttotalframenumber{23}%
 \begin{document}
-% \begin{frame}
-% %
-% \definecolor{uulmaccent}{HTML}{A9A28D}
-% \definecolor{red}{HTML}{A32638}
-% \begin{tikzpicture}[overlay,remember picture]
+\begin{frame}[plain]
+   \begin{focus}
+      \onslide<2->{\textasciitilde}
+   \end{focus}
+\end{frame}
 
-% \fill[uulmaccent] (current page.south west)
-%    rectangle ([xshift=-2cm,yshift=5mm]current page.south east) node[midway,centered] {[Titel einfügen]};
+\begin{frame}[plain]
+%
+\definecolor{uulmaccent}{HTML}{A9A28D}
+\definecolor{red}{HTML}{A32638}
+\begin{tikzpicture}[overlay,remember picture]
 
-% \fill[red] (current page.south east) rectangle ++(-1.85cm,5mm) coordinate (@);
+\node at (current page.center) {\includegraphics[width=\paperwidth]{img/rocket.png}};
 
-% \node[below right,white] at(@) {\kern-6pt\footnotesize13\;/\;page};
+\fill[uulmaccent] (current page.south west)
+   rectangle ([xshift=-2cm,yshift=5mm]current page.south east) node[midway,centered] {[Titel einfügen]};
 
-% \end{tikzpicture}
+\fill[red] (current page.south east) rectangle ++(-1.85cm,5mm) coordinate (@);
+
+\node[below right,white] at(@) {\kern-6pt\scriptsize \thepage\;/\;\pageref{LAST}};
+\node[below,white] at([yshift=5mm]current page.south) {\scriptsize[Datum einfügen]};
+
+\node[below left=8.5mm,yshift=-7mm,xshift=3.5mm,rotate=-50,starburst,drop shadow,fill=white,fill opacity=.95,draw=red,very thick,text=red,inner sep=2mm,scale=1.33] at (current page.north east) {\textbf{New!}};
+
+\node[below=2cm,text width=\paperwidth,align=right,font=\huge\bfseries\color{white},fill=red,inner sep=2mm] at (current page.center) {Titel einfügen~~};
+
+\end{tikzpicture}
 
 
-%    % powerpoint gag offset page number
-%    % weird image in the middle, fake animation
+   % powerpoint gag offset page number
+   % weird image in the middle, fake animation
 
-% \end{frame}
+\end{frame}
 
 \begin{frame}
+% \hspace*{4em}
+\begin{focus}
+\vspace*{2em}\par
+\begin{minipage}{.85\linewidth}
+   \tableofcontents
+\end{minipage}
+\end{focus}
 \end{frame}
 
 % \begin{frame}
@@ -41,7 +61,7 @@
 % \end{frame}
 
 \Sec{Doing funny stuff with}{Macro Definitions}
-\def\n{\\[2em]}
+\def\n{\\[1.5em]}
 \begin{frame}{~}
 \solSetStyle{keywordA}{}%
 \begin{focus}
@@ -54,6 +74,7 @@
    \blatex{\\providecommand}
 \column{.1\linewidth}
 \column<3->{.25\linewidth}
+   \blatex{\\let}\n
    \blatex{\\def}\n
    \blatex{\\gdef}\n
    \blatex{\\edef}\n
@@ -71,9 +92,11 @@
          \B{body-start}{\{\\textbf\{todo:\}~}\kern-3pt\B{arg-use}{\#1}\B{body-end}{\}}
       }
       \begin{onlyenv}<6->
-         \vspace*{7.5em}\par
+         \vspace*{6em}\par
+         \def\arraystretch{1.2}%
          \begin{tabular}{rcl}
-            \onslide<7->{\B{todo-call}{\\todo}\B{arg-main}{\{}\kern-5pt\B{arg-rest}{fun\}}} & \onslide<8->{~~\(\mapsto\)~~} & \onslide<8->{\B{2-body-start}{\\textbf\{todo:\}~}\kern-3pt\B{2-arg-use}{fun}}\\
+            & \multicolumn{2}{l}{\onslide<7->{\B[morekeywords={todo}]{todo-call}{\\todo}\B{arg-main}{\{}\kern-5pt\B{arg-rest}{fun\}}}} \\[1mm]
+            & \onslide<8->{~~\(\mapsto\)~~} & \onslide<8->{\B{2-body-start}{\\textbf\{todo:\}~}\kern-3pt\B{2-arg-use}{fun}}\\
             & \fo{\onslide<9->{~~\(\mapsto\)~~}} & \fo{\onslide<9->{\B{3-body-start}{\\ifmmode\\nfss@text\{\\bfseries}\textcolor{gray}{\ldots}}}\\
             & \onslide<10->{\(\vdots\)} & \\
             &\onslide<11->{~~\(\mapsto\)~~} & \onslide<12->{\DoBox{\textbf{todo:}~fun}}
@@ -93,31 +116,75 @@
    % Example replacement with arguments
 \end{frame}
 
+\newsavebox\CodeBox
+
+\begin{frame}[fragile]
+\begin{lrbox}\CodeBox
+\begin{minipage}{.85\linewidth}
+\begin{minted}{latex}
+\ifdraft
+   \typeout{Draft-Mode!}
+\else
+   \typeout{Other-Mode!}
+\fi
+\end{minted}
+\end{minipage}
+\end{lrbox}
+   \begin{focus}
+      \onslide<2->{\blatex[deletekeywords={ifdraft}]{\\newif\\ifdraft}}\\[4mm]%
+      \onslide<2->{\begin{tabular}{ccc}
+         \blatex{\\drafttrue} & & \blatex{\\draftfalse}
+      \end{tabular}}\bigskip\\[5mm]
+      \onslide<3->{\usebox\CodeBox}
+   \end{focus}
+   % conditionals (etoolbox etc. stuff)
+\end{frame}
+
 \begin{frame}
-   conditionals (etoolbox etc. stuff)
+   Consumption of arguments (spaces, groups)
+\end{frame}
+
+
+\begin{frame}[fragile]
+   \begin{lrbox}\CodeBox
+   \begin{minipage}{.85\linewidth}
+   \begin{minted}{latex}
+   \makeatletter
+
+   \newcommand\my@fancy@ns@version{v1.0.0}
+   \newcommand\myversion{\my@fancy@ns@version}
+
+   \makeatother
+   \end{minted}
+   \end{minipage}
+   \end{lrbox}
+   \begin{focus}
+   \onslide<2->{\usebox\CodeBox}
+   \end{focus}
+      % TODO: explain the @ symbol
 \end{frame}
 
 \begin{frame}
    more stuff (like namespacing with @, expandafter, edef, ...)
 \end{frame}
 
-\section[Packages]{Important Packages}
+\Sec{Using other's work by loading}{Important Packages}
 \begin{frame}{\insertsection}
 
 \end{frame}
 
-\section{TikZ}
+\Sec{On summoning penguins with}{The Ti\textit{k}Z package}
 
 \begin{frame}{\insertsection}
    tikz absolute placement and nodes
 \end{frame}
 
-\section{Forests}
+\Sec{Caring for the nature with}{The Forest Package}
 \begin{frame}{\insertsection}
    forests
 \end{frame}
 
-\section{Boxes}
+\Sec{Understanding some depths with}{Boxes in \LaTeX}
 \begin{frame}{\insertsection}
    boxes
 \end{frame}

@@ -116,8 +116,8 @@
 % \soldisablenumhl
 
 \usetikzlibrary{tikzmark,shadows}
-\def\B#1#2{\tikzmarknode{#1}{\strut\blatex{#2}\strut}}
-\def\DoBox#1{\tikz[baseline=(@.base)]{\node[rounded corners=2pt,fill=white,drop shadow={shadow xshift=.2ex,shadow yshift=-.2ex,opacity=.2,fill=gray}](@){#1};}}
+\newcommand*\B[3][]{\tikzmarknode{#2}{\strut\blatex[#1]{#3}\strut}}
+\def\DoBox#1{\tikz[baseline=(@.base)]{\node[rounded corners=2pt,fill=white,drop shadow={shadow xshift=.33ex,shadow yshift=-.33ex,opacity=.25,fill=gray}](@){#1};}}
 
 \newsavebox\FocusBox
 \NewEnviron{focus}{%
@@ -129,3 +129,7 @@
 \def\fo#1{\begin{colormixin}{30!white}#1\end{colormixin}}
 
 \usepackage{mathastext}
+\AtEndDocument{\label{LAST}}
+
+\setbeamerfont{section in toc}{size=\fontsize{10}{12},series=\bfseries}
+\setbeamertemplate{section in toc}{\strut\foreach\i in{1,...,\inserttocsectionnumber}{\hspace*{3.5em}}\textcolor{gray}{\inserttocsectionnumber.}\space\inserttocsection\bigskip}
