@@ -18,18 +18,11 @@
 \input{secs/intro}
 \input{secs/macros}
 \input{secs/packages}
-\input{secs/tikz-basics.tex}
-\input{secs/tikz-more.tex}
+\input{secs/tikz-basics}
+\input{secs/tikz-more}
+%%%%% \input{secs/forest}
+\input{secs/boxes}
 
-\Sec{Caring for the nature with}{The Forest Package}
-\begin{frame}{\insertsection}
-   forests
-\end{frame}
-
-\Sec{Understanding some depths with}{Boxes in \LaTeX}
-\begin{frame}{\insertsection}
-   boxes, llap, rlap, clap, raisebox,
-\end{frame}
 
 % \section{Catcodes}
 % \begin{frame}{\insertsection}
@@ -48,16 +41,67 @@
 \end{frame}
 
 \appendix
-\begin{frame}
-   TODO: fun stuff like overset of references etc.
-\end{frame}
+% \begin{frame}
+%    TODO: fun stuff like overset of references etc.
+% \end{frame}
 
 \begin{frame}
-   Non-Breaking Space \textasciitilde,
-   Some quick tips like '-' vs. '--' vs. '---'
-   open questions round
+   \begin{itemize}
+      \itemsep12pt
+      \item<1-> \say{\textasciitilde} to prevent line breaks (e.g., before \blatex{\\cite})
+      \item<2-> Know your minus-signs: \begin{itemize}
+         \item \blatex{-}~(-) as a hyphen
+         \item \blatex{-:c:-}~(--) for ranges, and
+         \item \blatex{-:c:-:c:-}~(---) for dashes
+      \end{itemize}
+      \item<3-> \blatex{\\let} for aliases like \begin{itemize}
+         \item \blatex{\\let\\T\\texttt} or
+         \item \blatex{\\let\\say\\enquote}
+      \end{itemize}
+   \end{itemize}
+
+   % Non-Breaking Space \textasciitilde,
+   % Some quick tips like '-' vs. '--' vs. '---'
+   % open questions round
+   % TODO: let for aliasses
 \end{frame}
 
+
+\def\DotChar{.}
+\long\def\Lookahead#1{%
+  \def\la{#1}%
+  \ifx\la\DotChar \rlap{.}\current
+  \else \current\la \fi
+}
+\makeatletter
+\def\Magic#1{\kern.75pt\relax % conventional spacing for all
+  \def\current{\smash{\textsuperscript{#1}\xspace}}%
+  \@ifnextchar\egroup \current \Lookahead
+}
+
+\begin{frame}[fragile,c]
+\begin{layout-full}
+\begin{minted}[escapeinside=||,morekeywords={DotChar,long,Lookahead,la,current,ifnextchar,egroup,xspace,Magic}]{latex}
+\def\Dot:c:Char{.}
+\def\Mag:c:ic#1{%
+  \def\cur:c:rent{\smash{\|\T{\textbf{textsuperscript}}|{#1}\xspace}}%
+  \@ifnextchar\egroup\current\Lookahead
+}
+
+\long\def\Look:c:ahead#1{%
+  \def\l:c:a{#1}%
+  \ifx\la\DotChar \rlap{.}\current
+  \else \current\la \fi
+}
+\end{minted}
+\bigskip
+
+\blatex[morekeywords={Magic}]{Hello\\Magic\{Hello\} World\\Magic\{World\}.} \DoBox{Hello\Magic{Hello} World\Magic{World}.}
+\end{layout-full}
+\end{frame}
+
+
+% TODO: offene Fragerunde am ende/dazwischen
 
 % \begin{frame}
 % \begin{layout-full}

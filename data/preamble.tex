@@ -158,7 +158,7 @@
 \tcbuselibrary{listingsutf8,skins}
 \def\ExampleBoundingBox{(-.5,-.5) rectangle (4.5,2)}
 \newtcblisting{tikzexample}{
-   listing side text,blankest,listing options={language=lFancyTex,style=sol@SOPRA,xleftmargin=\z@,xrightmargin=\z@,numbers=none,numbersep=\z@,frame=none,rulecolor={},backgroundcolor={},columns=flexible},lefthand width=.6\linewidth,
+   listing side text,blankest,listing options={language=lFancyTex,style=sol@SOPRA,xleftmargin=\z@,xrightmargin=\z@,numbers=none,numbersep=\z@,frame=none,rulecolor={},backgroundcolor={},columns=flexible,escapeinside={|*}{*|}},lefthand width=.6\linewidth,
    % we lock the output rectangle so that it does not jump
    before lower={
       \tikzset{
@@ -173,6 +173,8 @@
    }
 }
 
+\input{data/render-text}
+\usepackage{xspace}
 
 \usepackage{mathastext}
 \outro{\label{LAST}}
@@ -187,3 +189,6 @@
 }
 
 \newsavebox\CodeBox
+
+
+\errorcontextlines9999
