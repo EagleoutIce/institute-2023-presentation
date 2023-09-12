@@ -25,7 +25,7 @@ jobs:
     - name: 'compiling the pdfs'
       run: |
         ./run-docker
-        pdftoppm -png -f 1 -l 1 ./build/noanim_slides.pdf preview
+        pdftoppm -png -f 1 -l 1 ./build/noanim_presentation.pdf preview
     - name: Commit
       run: |
         cp build/*.pdf ./
