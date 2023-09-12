@@ -45,8 +45,10 @@
 \usepackage{tikz}
 \usetikzlibrary{arrows.meta,backgrounds,shapes.symbols,decorations.pathreplacing,3d,graphs,shapes.multipart}
 \usepackage{forest}
-\usepackage{siunitx}
-\usepackage[glows]{tikzpingus}
+\usepackage{etoolbox,siunitx}
+\makeatletter
+\appto\input@path{{lib/tikzpingus/tex/}{data/}}
+\usepackage[glows]{lib/tikzpingus/tex/tikzpingus}
 \newsavebox\OutPingu
 \setbox\OutPingu=\hbox{\tikz{\pingu[lightsaber right,right wing wave, glow,devil wings=btdl@color@primary!80!black!96!purple,wool hat=darkgray,laptop left,eyes wink,blush,heart,body type=legacy,bow tie=pingu@blue]}}
 \PostPage{\begin{tikzpicture}[@O]
