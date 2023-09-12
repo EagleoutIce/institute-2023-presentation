@@ -115,7 +115,7 @@
 \end{minipage}
 \end{lrbox}
    \begin{focus}
-      \onslide<2->{\blatex[deletekeywords={ifdraft}]{\\newif\\ifdraft}}\\[4mm]%
+      \blatex[deletekeywords={ifdraft}]{\\newif\\ifdraft}}\\[4mm]%
       \onslide<2->{\begin{tabular}{ccc}
          \blatex{\\drafttrue} & & \blatex{\\draftfalse}
       \end{tabular}}\bigskip\\[5mm]
@@ -140,14 +140,14 @@
    \end{minipage}
    \end{lrbox}
    \begin{focus}
-   \onslide<2->{\usebox\CodeBox}
+   \usebox\CodeBox
    \end{focus}
       % TODO: explain the @ symbol
 \end{frame}
 
 \begin{frame}
    \begin{focus}
-      \onslide<2->{\blatex{\\edef} \qquad\quad \blatex{\\expandafter} \quad\qquad \blatex{\\protect}}\bigskip\\
+      \blatex{\\edef} \qquad\quad \blatex{\\expandafter} \quad\qquad \blatex{\\protect}\bigskip\\
       \onslide<2->{\ldots}
    \end{focus}
    % TODO: es gibt noch sooo viel mehr
