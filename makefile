@@ -55,7 +55,7 @@ clean:
 	for fd in $(CLEANTARGETS); do rm -f *.$$fd; done
 
 docker:
-	docker build --pull --tag 'ma-final-r-slicing' --file 'Dockerfile' .
+	docker build --pull --tag 'presentation-builder' --file 'Dockerfile' .
 
 ifeq (${VERBOSE},0)
 MAKEFLAGS += --silent
