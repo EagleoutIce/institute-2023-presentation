@@ -177,7 +177,9 @@
 \usepackage{xspace}
 
 \usepackage{mathastext}
-\outro{\label{LAST}}
+\outro{\label{LAST}\begin{tikzpicture}[@]
+   \node[below left] at(current page.north east) {\href{https://github.com/EagleoutIce/institute-2023-presentation}{github.com/EagleoutIce/institute-2023-presentation}};
+\end{tikzpicture}}
 
 \setbeamerfont{section in toc}{size=\fontsize{10}{12},series=\bfseries}
 \setbeamertemplate{section in toc}{\strut\foreach\i in{1,...,\inserttocsectionnumber}{\hspace*{3.5em}}\textcolor{gray}{\inserttocsectionnumber.}\space\inserttocsection\bigskip}
