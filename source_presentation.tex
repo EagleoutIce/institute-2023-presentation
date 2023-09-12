@@ -12,7 +12,7 @@
 \begin{document}
 \begin{frame}[plain]
    \begin{focus}
-      \onslide<2->{\textasciitilde}
+      \onslide<2->{\textbf{\textasciitilde}}
    \end{focus}
 \end{frame}
 
@@ -143,25 +143,21 @@
 
 \begin{frame}
    \begin{focus}
-      \onslide<2->{\blatex[deletekeywords={fraction}]{\\newcommand\\fraction[2]\{\\ensuremath\{\\frac\{\#1\}\{\#2\}\}\}}}
-      \begin{onlyenv}<3->
+      \blatex[deletekeywords={fraction}]{\\newcommand\\fraction[2]\{\\ensuremath\{\\frac\{\#1\}\{\#2\}\}\}}
+      \begin{onlyenv}
          \vspace*{6em}\par
          \def\arraystretch{1.2}%
          \begin{tabular}{rcl}
-            & \multicolumn{2}{l}{\onslide<4->{\B{main-call}{\\fraction}\B{arg-a}{\{42\}}\kern-.5pt\B{arg-b}{\{3\}}}} \\[1mm]
-            & \onslide<5->{~~\(\mapsto\)~~} & \onslide<5->{\B{main-expanded}{\\ensuremath\{\\frac\{42\}\{3\}\}}} \\
-            & \onslide<8->{\(\vdots\)} & \\
-            &\onslide<9->{~~\(\mapsto\)~~} & \onslide<9->{\DoBox{\ensuremath{\frac{42}{\rule{0pt}{.92\ht\strutbox}3}}}}
+            & \multicolumn{2}{l}{{\B{main-call}{\\fraction}\B{arg-a}{\{42\}}\kern-.5pt\B{arg-b}{\{3\}}}} \\[1mm]
+            & {~~\(\mapsto\)~~} & {\B{main-expanded}{\\ensuremath\{\\frac\{42\}\{3\}\}}} \\
+            & {\(\vdots\)} & \\
+            & {~~\(\mapsto\)~~} & {\DoBox{\ensuremath{\frac{42}{\rule{0pt}{.92\ht\strutbox}3}}}}
          \end{tabular}
       \end{onlyenv}
    \end{focus}
    \begin{tikzpicture}[U-Over]
-      \onslide<6->{
-         \draw[-Kite] (arg-a.north) to[out=90,in=-30] ++(-3mm,3mm) node[left] {\T{\#1}};
-      }
-      \onslide<7->{
-         \draw[-Kite] (arg-b.north) to[out=90,in=210] ++(3mm,3mm) node[right] {\T{\#2}};
-      }
+      \draw[-Kite] (arg-a.north) to[out=90,in=-30] ++(-3mm,3mm) node[left] {\T{\#1}};
+      \draw[-Kite] (arg-b.north) to[out=90,in=210] ++(3mm,3mm) node[right] {\T{\#2}};
    \end{tikzpicture}
    % Consumption of arguments (spaces, groups)
 \end{frame}
@@ -214,7 +210,7 @@
 \begin{frame}
    \begin{focus}
       \onslide<2->{\blatex{\\edef} \qquad\quad \blatex{\\expandafter} \quad\qquad \blatex{\\protect}}\bigskip\\
-      \ldots
+      \onslide<2->{\ldots}
    \end{focus}
    % TODO: es gibt noch sooo viel mehr
    % more stuff (like namespacing with @, expandafter, edef, ...)
