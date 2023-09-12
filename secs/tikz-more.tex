@@ -1,0 +1,31 @@
+{%
+\def\ExampleBoundingBox{(-.75,-2) rectangle (2.6,1.6)}
+\begin{frame}[fragile]
+\begin{layout-full}
+\begin{center}
+\begin{onlyenv}<2->
+\begin{tikzexample}
+\begin{tikzpicture}
+   \pingu[heart,
+      eyes shiny,
+      feet sit,
+      tie=blue
+   ]
+\end{tikzpicture}
+\end{tikzexample}
+\end{onlyenv}
+\end{center}
+\end{layout-full}
+\begin{tikzpicture}[@O]
+   \only<2->{\node[above right=2mm,gray,font=\scriptsize] at(current page.south west) {\href{https://github.com/EagleoutIce/tikzpingus}{github.com/EagleoutIce/tikzpingus}};}
+\end{tikzpicture}
+% TODO: penguins
+\end{frame}
+}
+
+\begin{frame}{}
+   tikz absolute placement
+   refernce forest, tcolorbox and pgfplots
+\end{frame}
+
+\Learning{Ti\textit{k}Z Is Great for Smaller Graphics!}{And for more advanced stuff as well, but let's stick to the basics\ldots}

@@ -28,7 +28,7 @@
 \usepackage[fontsize=14]{beamer-latex-pdfpc-notes}
 \usepackage[cpalette,encoding,defaultfont,fakeminted]{sopra-listings}
 \solLoadLanguage{fancytex,R}
-\solsetmintedstyle{plain number}
+\solsetmintedstyle{plain}
 
 \usepackage{beamerthemedividing-lines}
 \SetColorProfile{42, 42, 42}{249, 166, 2}{137,64,75}
@@ -139,7 +139,8 @@
 
 \usetikzlibrary{tikzmark,shadows}
 \newcommand*\B[3][]{\tikzmarknode{#2}{\strut\blatex[#1]{#3}\strut}}
-\def\DoBox#1{\tikz[baseline=(@.base)]{\node[rounded corners=2pt,fill=white,drop shadow={shadow xshift=.33ex,shadow yshift=-.33ex,opacity=.25,fill=gray}](@){#1};}}
+\tikzset{DS/.style={rounded corners=2pt,fill=white,drop shadow={shadow xshift=.33ex,shadow yshift=-.33ex,opacity=.25,fill=gray},draw=gray}}
+\def\DoBox#1{\tikz[baseline=(@.base)]{\node[DS](@){#1};}}
 
 \newsavebox\FocusBox
 \newif\iffocusC \focusCtrue
@@ -150,6 +151,28 @@
    \end{tikzpicture}\end{layout-full}%
 }
 \def\fo#1{\begin{colormixin}{30!white}#1\end{colormixin}}
+
+% TODO: improve?
+
+\usepackage{tcolorbox}
+\tcbuselibrary{listingsutf8,skins}
+\def\ExampleBoundingBox{(-.5,-.5) rectangle (4.5,2)}
+\newtcblisting{tikzexample}{
+   listing side text,blankest,listing options={language=lFancyTex,style=sol@SOPRA,xleftmargin=\z@,xrightmargin=\z@,numbers=none,numbersep=\z@,frame=none,rulecolor={},backgroundcolor={},columns=flexible},lefthand width=.6\linewidth,
+   % we lock the output rectangle so that it does not jump
+   before lower={
+      \tikzset{
+         every picture/.style={execute at end picture={
+            % mark the current bounding box
+            \draw[lightgray,rounded corners=2pt,opacity=.85,dotted] ([xshift=-2pt,yshift=-2pt]current bounding box.south west) rectangle ([xshift=2pt,yshift=2pt]current bounding box.north east);
+            \pgfonlayer{background}
+            \draw[DS,use as bounding box] \ExampleBoundingBox;
+            \endpgfonlayer
+         }}
+      }
+   }
+}
+
 
 \usepackage{mathastext}
 \outro{\label{LAST}}
