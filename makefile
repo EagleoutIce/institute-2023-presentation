@@ -28,9 +28,9 @@ compile: ${SLIDESPDF}
 # for each pdf we set the filename similarly
 %.pdf: __FILENAME = $(addsuffix .tex, $(basename $@))
 
-noanim_noannot_%.pdf: __FILECONTENT = \\PassOptionsToClass{handout}{beamer}\\PassOptionsToPackage{disable}{beamer-latex-pdfpc-notes}\\input{source_$*.tex}
-noanim_noannot_%.pdf: ${DEPENDENCIES}
-	$(produce)
+# noanim_noannot_%.pdf: __FILECONTENT = \\PassOptionsToClass{handout}{beamer}\\PassOptionsToPackage{disable}{beamer-latex-pdfpc-notes}\\input{source_$*.tex}
+# noanim_noannot_%.pdf: ${DEPENDENCIES}
+# 	$(produce)
 
 # this are mere wrapper rules to be used with the common producer below
 # with $* we get the stem (whatever the '%' did expand to)
