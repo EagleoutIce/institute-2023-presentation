@@ -179,9 +179,7 @@
 \usepackage{xspace}
 
 \usepackage{mathastext}
-\outro{\label{LAST}\begin{tikzpicture}[@]
-   \node[below left,text=white,opacity=.9] at(current page.north east) {\scriptsize\href{https://github.com/EagleoutIce/institute-2023-presentation}{github.com/EagleoutIce/institute-2023-presentation}};
-\end{tikzpicture}}
+\outro{\label{LAST}\raisebox{8pt}{\tikz{\node[text=white,opacity=.9] at (current page.north east) {\mdseries\scriptsize\href{https://github.com/EagleoutIce/institute-2023-presentation}{github.com/EagleoutIce/institute-2023-presentation}};}}}
 
 \setbeamerfont{section in toc}{size=\fontsize{10}{12},series=\bfseries}
 \setbeamertemplate{section in toc}{\strut\foreach\i in{1,...,\inserttocsectionnumber}{\hspace*{3.5em}}\textcolor{gray}{\inserttocsectionnumber.}\space\inserttocsection\bigskip}
