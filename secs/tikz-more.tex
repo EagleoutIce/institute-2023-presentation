@@ -22,10 +22,32 @@
 % TODO: penguins
 \end{frame}
 }
-
-\begin{frame}{}
-   tikz absolute placement
-   refernce forest, tcolorbox and pgfplots
+{%
+\def\ExampleBoundingBox{(-.75,-2) rectangle (2.6,1.6)}
+\begin{frame}[fragile]
+\begin{lrbox}\CodeBox
+\begin{minipage}{.85\linewidth}
+\begin{minted}{latex}
+\begin{tikzpicture}[overlay, remember picture]
+   \node[below left] at (current page.north)
+      {Hello World!};
+\end{tikzpicture}
+\end{minted}
+\end{minipage}
+\end{lrbox}
+\begin{focus}
+   \usebox\CodeBox\vspace*{4em}\\*
+   \blatex{\\usepackage\{tcolorbox\}} \qquad \blatex{\\usepackage\{pgfplots\}}\medskip\\
+   \blatex{\\usepackage\{forest\}}
+\end{focus}
+\begin{onlyenv}<2->
+\begin{tikzpicture}[overlay,remember picture]
+   \node[below left] at(current page.north east) {\textbullet~Hello World!};
+\end{tikzpicture}
+\end{onlyenv}
+% tikz absolute placement
+% refernce forest, tcolorbox and pgfplots
 \end{frame}
+}
 
 \Learning{Ti\textit{k}Z Is Great for Smaller Graphics!}{And for more advanced stuff as well, but let's stick to the basics\ldots}
