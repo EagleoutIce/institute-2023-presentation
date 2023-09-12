@@ -1,3 +1,23 @@
+\begin{frame}[fragile]
+\begin{layout-full}
+\begin{center}
+\begin{onlyenv}<1->
+\begin{tikzexample}
+\begin{tikzpicture}
+   \foreach[count=\i] \name in {
+      This, is, fun
+   } {
+      \node (\i) at (\i,.75) {\name};
+   }
+   \draw (1) -- (2) -- (3);
+\end{tikzpicture}
+\end{tikzexample}
+\end{onlyenv}
+\end{center}
+\end{layout-full}
+% foreach is not limited to tikzpictures...
+\end{frame}
+
 {%
 \def\ExampleBoundingBox{(-.75,-2) rectangle (2.6,1.6)}
 \begin{frame}[fragile]
