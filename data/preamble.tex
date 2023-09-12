@@ -1,5 +1,5 @@
 \errorcontextlines99999
-\documentclass[aspectratio=169,usepdftitle=true]{beamer}
+\documentclass[aspectratio=169,usepdftitle=true,main=english]{beamer}
 
 \usepackage{xcolor-material}
 
@@ -45,6 +45,7 @@
 \usepackage{tikz}
 \usetikzlibrary{arrows.meta,backgrounds,shapes.symbols,decorations.pathreplacing,3d,graphs,shapes.multipart}
 \usepackage{forest}
+\usepackage{siunitx}
 \usepackage[glows]{tikzpingus}
 \newsavebox\OutPingu
 \setbox\OutPingu=\hbox{\tikz{\pingu[lightsaber right,right wing wave, glow,devil wings=btdl@color@primary!80!black!96!purple,wool hat=darkgray,laptop left,eyes wink,blush,heart,body type=legacy,bow tie=pingu@blue]}}
@@ -101,6 +102,17 @@
 \end{frame}
 }}
 
+\newcounter{Learnings}
+\def\Learning#1#2{\refstepcounter{Learnings}%
+\begin{frame}
+   \begin{tikzpicture}[@O]
+      \node[gray,font=\scriptsize\sbfamily] (@) at(current page.center) {Learning \theLearnings};
+      \node[font=\huge\bfseries,below] at (@.south) {\only<2->{#1}};
+      \node[font=\scriptsize,gray,above right=2mm,text width=.42\linewidth,align=flush left] at(current page.south west) {\only<3->{#2}};
+   \end{tikzpicture}
+\end{frame}
+}
+
 \setbeamertemplate{footline}{%
 \begin{tikzpicture}[@O]
    \node[above left=1mm,font=\tiny\sbfamily,yshift=2pt,xshift=-.33pt] at(current page.south east) {\strut\thepage\strut};
@@ -112,6 +124,7 @@
 \solSetStyle{basic}{\sol@ttfamily}%
 \solSetStyle{keywordA}{\bfseries}% TODO: sbfamily?
 \solSetStyle{keywordB}{\color{darkgray}}
+\solSetStyle{keywordC}{\color{darkgray}}
 \solSetStyle{numbers}{\color{darkgray}}
 % \soldisablenumhl
 
@@ -120,8 +133,9 @@
 \def\DoBox#1{\tikz[baseline=(@.base)]{\node[rounded corners=2pt,fill=white,drop shadow={shadow xshift=.33ex,shadow yshift=-.33ex,opacity=.25,fill=gray}](@){#1};}}
 
 \newsavebox\FocusBox
+\newif\iffocusC \focusCtrue
 \NewEnviron{focus}{%
-   \setbox\FocusBox=\hbox{\parbox\linewidth{\begin{center}\BODY\end{center}}}%
+   \setbox\FocusBox=\hbox{\parbox\linewidth{\iffocusC\begin{center}\BODY\end{center}\else\BODY\fi}}%
    \begin{layout-full}\begin{tikzpicture}[@O]
       \node at(current page.center) {\usebox\FocusBox};
    \end{tikzpicture}\end{layout-full}%
@@ -133,3 +147,9 @@
 
 \setbeamerfont{section in toc}{size=\fontsize{10}{12},series=\bfseries}
 \setbeamertemplate{section in toc}{\strut\foreach\i in{1,...,\inserttocsectionnumber}{\hspace*{3.5em}}\textcolor{gray}{\inserttocsectionnumber.}\space\inserttocsection\bigskip}
+
+\tikzset{
+   K/.style={decoration={brace,mirror},semithick,decorate},
+   KO/.style={decoration={brace},semithick,decorate},
+   U-Over/.style={@O,gray,line cap=round,font=\small}
+}
