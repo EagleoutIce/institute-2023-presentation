@@ -104,13 +104,22 @@
 
 \newcounter{Learnings}
 \def\Learning#1#2{\refstepcounter{Learnings}%
+\protected@csxdef{Learning\theLearnings}{#1}%
 \begin{frame}
+   \hypertarget<3>{learning:\theLearnings}{}%
    \begin{tikzpicture}[@O]
       \node[gray,font=\scriptsize\sbfamily] (@) at(current page.center) {Learning \theLearnings};
       \node[font=\huge\bfseries,below] at (@.south) {\only<2->{#1}};
       \node[font=\scriptsize,gray,above right=2mm,text width=.42\linewidth,align=flush left] at(current page.south west) {\only<3->{#2}};
    \end{tikzpicture}
 \end{frame}
+}
+
+\def\AllLearnings{%
+   \foreach\i in {1,...,\theLearnings} {%
+      \hyperlink{learning:\i}{\textcolor{gray}{\scriptsize Learning \i}}\\*
+         \strut\qquad\hyperlink{learning:\i}{\csuse{Learning\i}}\bigskip\par
+   }%
 }
 
 \setbeamertemplate{footline}{%
